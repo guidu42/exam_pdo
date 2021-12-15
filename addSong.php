@@ -22,7 +22,7 @@ if(isset($_GET['idArtist']) && preg_match('/[0-9]+/', $_GET['idArtist']) == 1){
             </div>
             <div class="mb-3">
                 <label for="publishedAt" class="form-label">Song release Date</label>
-                <input type="date" class="form-control" id="publishedAt" name="publishedAt" required>
+                <input type="datetime-local" class="form-control" id="publishedAt" name="publishedAt" required>
             </div>
             <button type="submit" class="btn btn-success">Ajouter</button>
         </form>
