@@ -84,4 +84,17 @@ class SongRepository
             ]);
         }
     }
+
+    public function createOneSong(int $artistId, string $title, int $time, DateTime $publishedAt){
+        if(!is_null($this->pdo)){
+            $query = 'INSERT INTO `song` (`artist_id`, `title`, `time`, `published_at`) VALUES (:artist_id, :title, :time, :published_at)';
+            $response = $this->pdo->prepare($query);
+            $response->execute([
+               'artist_id' => $artistId,
+               ':title' => $title,
+               ':time' => $time,
+               ':published_at' => $publishedAt->format('Y-m-d H:i:s'),
+            ]);
+        }
+    }
 }

@@ -20,13 +20,14 @@ $artists = (new ArtistRepository())->getAllArtist();
         foreach ($artists as $artist){
             ?>
             <tr>
-                <td><?php echo $artist->getId() ?></td>
-                <td><?php echo $artist->getName() ?></td>
-                <td><?php echo $artist->getAge() ?></td>
-                <td>
+                <td class="align-middle"><?php echo $artist->getId() ?></td>
+                <td class="align-middle"><?php echo $artist->getName() ?></td>
+                <td class="align-middle"><?php echo $artist->getAge() ?></td>
+                <td class="w-25 align-middle">
                     <div class="btn-group">
                         <a href="artistDetails.php?id=<?php echo $artist->getId()?>" class="btn btn-success">Voir</a>
                         <a href="addArtist.php?id=<?php echo $artist->getId() ?>" class="btn btn-info">Edit</a>
+                        <a href="addSong.php?idArtist=<?php echo $artist->getId() ?>" class="btn btn-outline-light">Add Song</a>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal<?php echo $artist->getId() ?>">
                             Delete
                         </button>

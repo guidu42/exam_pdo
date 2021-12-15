@@ -31,11 +31,11 @@ if(isset($_POST['search']) && $_POST['search'] != ''){
             foreach ($songs as $song){
                 ?>
                 <tr>
-                    <td><?php echo $song->getId(); ?></td>
-                    <td><?php echo $song->getArtistId(); ?></td>
-                    <td><?php echo $song->getTitle(); ?></td>
-                    <td><?php echo $song->getTime(); ?></td>
-                    <td><?php echo $song->getPublishedAt()->format('d-m-Y'); ?></td>
+                    <td class="align-middle"><?php echo $song->getId(); ?></td>
+                    <td class="align-middle"><a href="artistDetails.php?id=<?php echo $song->getArtistId(); ?>" class="btn btn-primary px-5"><?php echo $song->getArtistId(); ?></a></td>
+                    <td class="align-middle"><?php echo $song->getTitle(); ?></td>
+                    <td class="align-middle"><?php echo $song->getTime(); ?></td>
+                    <td class="align-middle"><?php echo $song->getPublishedAt()->format('d-m-Y'); ?></td>
                 </tr>
                 <?php
             }

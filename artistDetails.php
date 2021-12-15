@@ -1,6 +1,6 @@
 <?php
 include 'header.php';
-if(isset($_GET['id']) && is_int(intval($_GET['id']))){
+if(isset($_GET['id']) && !empty($_GET['id']) && is_int(intval($_GET['id']))){
     $artist = (new ArtistRepository())->getOneArtist($_GET['id']);
     if(!is_null($artist)){
         $songs = (new SongRepository())->getAllSongByArtist($artist->getId());
@@ -12,9 +12,11 @@ if(isset($_GET['id']) && is_int(intval($_GET['id']))){
 ?>
 
 <div class="container my-5">
+    <h1 class="text-center mb-3">Page de profil Artiste</h1>
     <?php
     if(!is_null($artist)){
     ?>
+    <h2>Artiste: </h2>
     <table class="table table-dark table-striped table-hover text-center">
         <tbody>
         <tr>
@@ -31,9 +33,10 @@ if(isset($_GET['id']) && is_int(intval($_GET['id']))){
         </tr>
         </tbody>
     </table>
-    <div class="btn-group">
+    <div class="btn-group mb-3">
         <a href="addArtist.php?id=<?php echo $artist->getId() ?>" class="btn btn-info">Edit</a>
     </div>
+        <h2>Musiques: </h2>
         <?php
         if(!is_null($songs)){
             ?>
@@ -87,10 +90,11 @@ if(isset($_GET['id']) && is_int(intval($_GET['id']))){
             <?php
         }else{
             ?>
-                <div class="text-center bg-dark text-light p-3 rounded mt-3">Cet artiste ne possede aucune musique</div>
+                <div class="text-center bg-dark text-light p-3 rounded my-4">Cet artiste ne possede aucune musique</div>
             <?php
         }
         ?>
+        <a href="addSong.php?idArtist=<?php echo $artist->getId() ?>" class="btn btn-info">Ajouter une musique</a>
 
     <?php
     }else{

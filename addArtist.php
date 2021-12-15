@@ -41,7 +41,6 @@ if(isset($_GET['id']) && is_int(intval($_GET['id']))){
         }else{
             ?>
                 <div>
-                    <label for="id">Artist Id</label>
                     <input type="hidden" id="id" name="id" value="<?php echo $artist->getId() ?>">
                 </div>
             <button type="submit" class="btn btn-primary">Modifier</button>
