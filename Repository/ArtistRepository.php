@@ -82,4 +82,25 @@ class ArtistRepository
             ]);
         }
     }
+
+    public function getArtistBySearch(string $search)
+    {
+        if(!is_null($this->pdo)){
+            $query = 'SELECT * FROM `artist` WHERE `name` LIKE :search';
+            $response = $this->pdo->prepare($query);
+            $response->execute([
+                ':search' => '%' . $search . '%',
+            ]);
+            if($response->rowCount()>0){
+                $response = $response->fetchAll(PDO::FETCH_ASSOC);
+                $artists = [];
+                foreach ($response as $row) {
+                    $artists[] = (new Artist())->hydrate($row);
+                }
+                return $artists;
+            }
+            return null;
+        }
+        return null;
+    }
 }

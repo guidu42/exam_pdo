@@ -4,7 +4,7 @@ include "Entity/Artist.php";
 include "Repository/ArtistRepository.php";
 include "Repository/SongRepository.php";
 
-if(isset($_POST['artistId'], $_POST['title'], $_POST['time'], $_POST['publishedAt'])){
+if(isset($_POST['artistId'], $_POST['title'], $_POST['time'], $_POST['publishedAt'])  && preg_match('/[0-9]+/', $_POST['artistId']) == 1){
     $artistId = $_POST['artistId'];
     $title = $_POST['title'];
     $time = $_POST['time'];

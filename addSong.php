@@ -1,7 +1,6 @@
 <?php
 include "header.php";
-
-if(isset($_GET['idArtist']) && !empty($_GET['idArtist']) && is_int(intval($_GET['idArtist']))){
+if(isset($_GET['idArtist']) && preg_match('/[0-9]+/', $_GET['idArtist']) == 1){
     $artist = (new ArtistRepository())->getOneArtist($_GET['idArtist']);
     if(is_null($artist)){
         header('Location: index.php');
@@ -31,6 +30,8 @@ if(isset($_GET['idArtist']) && !empty($_GET['idArtist']) && is_int(intval($_GET[
 
     <?php
     }
+}else{
+    header('Location: index.php');
 }
 
 include "footer.php";

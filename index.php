@@ -1,11 +1,23 @@
 <?php
 include 'header.php';
 
-$artists = (new ArtistRepository())->getAllArtist();
+if(isset($_POST['search']) && $_POST['search'] != ''){
+    $artists = (new ArtistRepository())->getArtistBySearch($_POST['search']);
+}else{
+    $artists = (new ArtistRepository())->getAllArtist();
+}
 
 ?>
 <div class="container my-5">
+    <h1 class="text-center mb-3">Liste des artistes</h1>
     <a href="addArtist.php" class="btn btn-outline-dark mt-3">Ajouter un Artiste</a>
+    <form class="d-flex my-2" method="post" action="index.php">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <?php
+    if (!is_null($artists)){
+    ?>
     <table class="table table-striped table-dark table-hover text-center mt-3">
         <thead>
         <tr>
@@ -56,6 +68,13 @@ $artists = (new ArtistRepository())->getAllArtist();
         ?>
         </tbody>
     </table>
+    <?php
+    }else{
+    ?>
+    <div class="text-center">Aucun artiste correspondant à votre recherche</div>
+    <?php
+    }
+    ?>
 </div>
 
 

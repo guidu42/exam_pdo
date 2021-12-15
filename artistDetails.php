@@ -1,6 +1,6 @@
 <?php
 include 'header.php';
-if(isset($_GET['id']) && !empty($_GET['id']) && is_int(intval($_GET['id']))){
+if(isset($_GET['id'])  && preg_match('/[0-9]+/', $_GET['id']) == 1){
     $artist = (new ArtistRepository())->getOneArtist($_GET['id']);
     if(!is_null($artist)){
         $songs = (new SongRepository())->getAllSongByArtist($artist->getId());

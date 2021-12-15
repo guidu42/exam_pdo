@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 
-if(isset($_GET['id']) && is_int(intval($_GET['id']))){
+if(isset($_GET['id']) && preg_match('/[0-9]+/', $_GET['id']) == 1){
     $artist = (new ArtistRepository())->getOneArtist($_GET['id']);
     if(is_null($artist)){
         $artist = new Artist();
@@ -12,7 +12,19 @@ if(isset($_GET['id']) && is_int(intval($_GET['id']))){
 
 ?>
 
-<div class="container">
+<div class="container my-5">
+    <?php
+    if(is_null($artist->getId())){
+        ?>
+        <h1 class="text-center mb-3">Ajouter un nouvel artiste</h1>
+        <?php
+    }else{
+        ?>
+        <h1 class="text-center mb-3">Modifier les informations de <?php echo $artist->getName() ?></h1>
+        <?php
+    }
+    ?>
+    <h1></h1>
     <form method="post"
             <?php
               if (is_null($artist->getId())){
